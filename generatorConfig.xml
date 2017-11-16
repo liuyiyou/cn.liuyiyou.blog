@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<!-- mvn -PmyBatis -Doverwrite=true mybatis-generator:generate or java -jar
+	mybatis-generator-core-x.x.x.jar -configfile \temp\generatorConfig.xml -overwrite
+	-verbose -->
+<generatorConfiguration>
+
+    <context id="context1" targetRuntime="MyBatis3"  defaultModelType="flat">
+
+
+        <!--相关属性配置-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--<property name="mergeable" value="false"></property>-->
+        <!--相关插件配置-->
+        <!--生成的xml文件是覆盖而不是追加-->
+        <plugin type="org.mybatis.generator.ibalife.plugins.OverIsMergeablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <!-- <plugin type="org.mybatis.generator.plugins.CachePlugin"> <property
+            name="cache_type" value="com.daojia.cs.common.dsfbase.mybatis.LoggingMemcachedCache"/>
+            </plugin> -->
+
+        <!-- <plugin type="org.mybatis.generator.daojia.plugins.JsonFormatPlugin">
+            <property name="serializLongToString" value="true" /> </plugin> -->
+        <plugin type="org.mybatis.generator.ibalife.plugins.ExampleQueryByArrayPlugin"/>
+
+        <!-- 生成service接口以及实现 -->
+        <plugin type="org.mybatis.generator.ibalife.plugins.service.IbalifeServicePlugin"/>
+
+        <commentGenerator
+                type="org.mybatis.generator.ibalife.IbalifeCommentGenerator">
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ibalife_user?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="root" password="123456"/>
+
+        <!-- <javaTypeResolver type="org.mybatis.generator.daojia.DaojiaJavaTypeResolver">
+            <property name="forceBigDecimals" value="false" /> </javaTypeResolver> -->
+
+        <javaModelGenerator targetPackage="cn.liuyiyou.web.model"
+                            targetProject="src/main/java">
+            <property name="trimStrings" value="true"/>
+            <property name="pageEntity" value="true" />
+            <property name="rootClass" value="cn.liuyiyou.web.model.PageEntity" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- type： SPRING、XMLMAPPER -->
+        <javaClientGenerator targetPackage="cn.liuyiyou.web.mapper"
+                             targetProject="src/main/java" type="XMLMAPPER"/>
+
+
+        <!--具体的表-->
+        <table tableName="user" domainObjectName="User">
+            <!--这个加上后,新增等方法会去掉主键-->
+            <!--<generatedKey column="uid" sqlStatement="MySql" identity="true"/>-->
+        </table>
+    </context>
+</generatorConfiguration>
