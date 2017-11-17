@@ -42,12 +42,5 @@ public class NavigatorController {
         return new ModelAndView("mailbox");
     }
 
-    /**
-     * 博客列表
-     * @return
-     */
-    @RequestMapping({"/blog"})
-    public ModelAndView blog() {
-        return new ModelAndView("blog");
-    }
+
 }

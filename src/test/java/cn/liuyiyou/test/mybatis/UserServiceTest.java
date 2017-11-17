@@ -2,7 +2,6 @@ package cn.liuyiyou.test.mybatis;
 
 import cn.liuyiyou.AbstractTest;
 import cn.liuyiyou.web.mapper.UserMapper;
-import cn.liuyiyou.web.model.Order;
 import cn.liuyiyou.web.model.User;
 import cn.liuyiyou.web.model.UserExample;
 import cn.liuyiyou.web.service.UserService;
@@ -55,12 +54,7 @@ public class UserServiceTest extends AbstractTest {
     }
 
 
-    public Order getOrder() {
-        Order order = new Order();
-        order.setWorkerId(2);
-        order.setOrderName("abc");
-        return order;
-    }
+
 
 
 }

@@ -35,7 +35,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/ibalife_user?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://localhost:3306/yiadmin?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root" password="123456"/>
 
         <!-- <javaTypeResolver type="org.mybatis.generator.daojia.DaojiaJavaTypeResolver">
@@ -48,7 +48,7 @@
             <property name="rootClass" value="cn.liuyiyou.web.model.PageEntity" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="cn.liuyiyou.web.mapper" targetProject="src/main/resources"/>
 
         <!-- type： SPRING、XMLMAPPER -->
         <javaClientGenerator targetPackage="cn.liuyiyou.web.mapper"
@@ -56,7 +56,9 @@
 
 
         <!--具体的表-->
-        <table tableName="user" domainObjectName="User">
+        <table tableName="t_message" domainObjectName="Message"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
             <!--这个加上后,新增等方法会去掉主键-->
             <!--<generatedKey column="uid" sqlStatement="MySql" identity="true"/>-->
         </table>

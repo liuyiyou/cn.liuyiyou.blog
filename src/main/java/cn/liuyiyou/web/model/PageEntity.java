@@ -13,9 +13,9 @@ public class PageEntity {
 
     public final static Long EXPIRE = 30L;
 
-    private transient Integer total;
+    private transient Integer total = 1000;
 
-    private transient Integer page;
+    private transient Integer page = 1;
 
     private transient Integer pageSize = 5000;
 

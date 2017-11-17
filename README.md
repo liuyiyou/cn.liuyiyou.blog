@@ -10,12 +10,24 @@
 
 初期打算用SpringBoot+常规web方式,后续可能会新增其他
 
+- SpringBoot
+- Thymeleaf
+- MyBatis
+- MySQL
+- Redis
+
+
 
 ## 更新内容
 
-### 20171115
+### 20171116
 - 第一次提交到GitHub
 
-### 20171116
+### 20171117
 - 集成HAdmin框架
 - 新增了几个页面
+
+### 20171118
+- 博客列表:  mybatis关联查询, thymeleaf模板
+- 文章详情:  非关联查询,业务层完成功能,thymeleaf模板
+- 消息类别:  ajax,RestControll
