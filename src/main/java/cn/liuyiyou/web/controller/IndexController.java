@@ -25,9 +25,12 @@ public class IndexController {
         return new ModelAndView(DEFAULT_INDEX);
     }
 
+
+
+
+
     @RequestMapping({"/index"})
     public ModelAndView index() {
-        System.out.println("xxxx");
         return new ModelAndView("/"+DEFAULT_INDEX);
     }
 
