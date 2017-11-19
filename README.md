@@ -17,6 +17,13 @@
 - Redis
 
 
+- MyBaits
+
+  -- 自动生成代码
+  -- 枚举类的使用
+  -- 关联查询
+
+
 
 ## 更新内容
 
@@ -31,3 +38,5 @@
 - 博客列表:  mybatis关联查询, thymeleaf模板
 - 文章详情:  非关联查询,业务层完成功能,thymeleaf模板
 - 消息类别:  ajax,RestControll
+
+

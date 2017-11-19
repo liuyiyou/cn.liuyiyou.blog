@@ -1,4 +1,4 @@
-package cn.liuyiyou.web;
+package cn.liuyiyou.web.vo;
 
 import cn.liuyiyou.web.model.Message;
 

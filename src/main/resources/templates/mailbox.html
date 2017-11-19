@@ -160,23 +160,27 @@
 
             $.getJSON('/message/list', function(data) {
                 var content = '';
-                $(data).each(function(index,item){
-                    console.info(item);
-                    content += '<tr class="read">';
-                    content += '<td class="check-mail">';
-                    content += '<input type="checkbox" class="i-checks" />';
-                    content += '</td>';
-                    content += '<td class="mail-ontact">';
-                    content += '<a href="/message/'+item.msgId+'/">'+item.msgFrom+'</a>';
-                    content += '<span class="label label-warning pull-right">验证邮件</span></td>';
-                    content += '<td class="mail-subject"><a href="mail_detail.html">支付宝提醒</a>';
-                    content += '</td>';
-                    content += '<td class=""><i class="fa fa-paperclip"></i>';
-                    content += '</td>';
-                    content += '<td class="text-right mail-date">昨天 10:20</td>';
-                    content += '</tr>';
-                });
-                $("#message-list").append(content);
+                if(data.code==200){
+                    var list = data.data.list;
+                    $(list).each(function(index,item){
+                        console.info(item);
+                        content += '<tr class="read">';
+                        content += '<td class="check-mail">';
+                        content += '<input type="checkbox" class="i-checks" />';
+                        content += '</td>';
+                        content += '<td class="mail-ontact">';
+                        content += '<a href="/message/'+item.msgId+'/">'+item.msgFrom+'</a>';
+                        content += '<span class="label label-warning pull-right">验证邮件</span></td>';
+                        content += '<td class="mail-subject"><a href="mail_detail.html">支付宝提醒</a>';
+                        content += '</td>';
+                        content += '<td class=""><i class="fa fa-paperclip"></i>';
+                        content += '</td>';
+                        content += '<td class="text-right mail-date">昨天 10:20</td>';
+                        content += '</tr>';
+                    });
+                    $("#message-list").append(content);
+                }
+
             });
 
         });
