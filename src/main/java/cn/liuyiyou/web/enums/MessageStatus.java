@@ -14,12 +14,31 @@ public enum MessageStatus {
     READ((byte) 1, "未读"),;
 
 
+
+
     private byte status;
 
     private String value;
 
     MessageStatus(byte status, String value) {
         this.status = status;
+        this.value = value;
+    }
+
+
+    public byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(byte status) {
+        this.status = status;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
         this.value = value;
     }
 }

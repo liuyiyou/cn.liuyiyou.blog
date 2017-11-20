@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.liuyiyou.web.mapper.BlogMapper" >
+
+  <resultMap id="BaseResultMap" type="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    <id column="blogId" property="blogId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="ResultMapWithBLOBs" type="cn.liuyiyou.web.model.Blog" extends="BaseResultMap" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    blog_id, title, author, is_del, create_time, update_time
+  </sql>
+
+  <sql id="Blob_Column_List" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    content
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_blog
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    delete from t_blog
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    insert into t_blog (blog_id, title, author,
+      content, is_del, create_time, 
+      update_time)
+    values (#{blogId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},
+      #{content,jdbcType=LONGVARCHAR}, #{isDel,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    insert into t_blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="blogId != null" >
+        blog_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="blogId != null" >
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    update t_blog
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    update t_blog
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    update t_blog
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByParams" resultMap="ResultMapWithBLOBs" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_blog
+    <where >
+      <if test="blogId != null" >
+        blog_id = #{blogId,jdbcType=INTEGER}
+      </if>
+      <if test="title != null" >
+         and title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="author != null" >
+         and author = #{author,jdbcType=VARCHAR}
+      </if>
+      <if test="content != null" >
+         and content = #{content,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="isDel != null" >
+         and is_del = #{isDel,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+
+
+
+
+
+
+  <resultMap id="BaseResultMapWithTags" type="cn.liuyiyou.web.model.Blog" >
+    <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <collection  property="tags" resultMap="cn.liuyiyou.web.mapper.TagMapper.BaseResultMapWithOutTimes"></collection>
+  </resultMap>
+
+
+  <!--测试关联查询-->
+  <select id="selectBlogPageWithTags" resultMap="BaseResultMapWithTags" parameterType="cn.liuyiyou.web.model.Blog" >
+    <!--
+    警告!该代码由mbg插件自动生成，请不要修改
+    -->
+    select
+    t_blog.blog_id, title, name, author, is_del,t_blog.create_time, t_blog.update_time,
+    <include refid="Blob_Column_List" />
+    from t_blog
+    LEFT JOIN
+    t_tag
+    ON  t_blog.blog_id = t_tag.blog_id
+    <where >
+      <if test="blogId != null" >
+        blog_id = #{blogId,jdbcType=INTEGER}
+      </if>
+      <if test="title != null" >
+        and title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="author != null" >
+        and author = #{author,jdbcType=VARCHAR}
+      </if>
+      <if test="content != null" >
+        and content = #{content,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="isDel != null" >
+        and is_del = #{isDel,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
