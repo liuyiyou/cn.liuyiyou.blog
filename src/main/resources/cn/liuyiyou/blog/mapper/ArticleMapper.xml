@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.liuyiyou.blog.mapper.ArticleMapper">
+
+    <resultMap id="BaseResultMap" type="cn.liuyiyou.blog.entity.Article">
+        <id property="id" column="id"></id>
+        <result property="introduction" column="introduction"></result>
+        <result property="title" column="title"></result>
+        <result property="attachment" column="attachment"></result>
+        <result property="categoryName" column="category_name"></result>
+        <result property="image" column="image"></result>
+        <result property="image1x" column="image1x"></result>
+        <result property="permalink" column="permalink"></result>
+        <result property="richRecommended" column="rich_recommended"></result>
+        <result property="sticky" column="sticky"></result>
+        <result property="content" column="content"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+    </resultMap>
+
+    <select id="selectArticlesByPage" parameterType="map" resultMap="BaseResultMap">
+        SELECT *
+        FROM t_article
+    </select>
+
+</mapper>

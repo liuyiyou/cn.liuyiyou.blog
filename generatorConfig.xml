@@ -41,17 +41,17 @@
         <!-- <javaTypeResolver type="org.mybatis.generator.daojia.DaojiaJavaTypeResolver">
             <property name="forceBigDecimals" value="false" /> </javaTypeResolver> -->
 
-        <javaModelGenerator targetPackage="cn.liuyiyou.web.model"
+        <javaModelGenerator targetPackage="cn.liuyiyou.blog.entity"
                             targetProject="src/main/java">
             <property name="trimStrings" value="true"/>
             <property name="pageEntity" value="true" />
-            <property name="rootClass" value="cn.liuyiyou.web.model.PageEntity" />
+            <property name="rootClass" value="cn.liuyiyou.blog.entity.PageEntity" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="cn.liuyiyou.web.mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="cn.liuyiyou.blog.mapper" targetProject="src/main/resources"/>
 
         <!-- type： SPRING、XMLMAPPER -->
-        <javaClientGenerator targetPackage="cn.liuyiyou.web.mapper"
+        <javaClientGenerator targetPackage="cn.liuyiyou.blog.mapper"
                              targetProject="src/main/java" type="XMLMAPPER"/>
 
 
