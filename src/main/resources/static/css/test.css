@@ -1,0 +1,25 @@
+*{margin:0;padding:0;}
+._main_content ._introduce_title{
+	white-space: normal;
+}
+
+@media screen and (min-width: 320px) and (max-width: 414px){
+
+    ._mod_stat ._article_stat ._stat_list ._stat_item{
+        position: relative;
+        margin: 0;
+        text-align: center;
+    }
+
+    ._mod_stat ._article_stat  ._views,
+    ._mod_stat ._article_stat  ._likes{
+        padding-right: 8px;
+    }
+
+    ._mod_stat ._article_stat ._stat_list{
+		width: auto;
+		margin: 0 auto;
+		justify-content: center;
+	}
+
+}
