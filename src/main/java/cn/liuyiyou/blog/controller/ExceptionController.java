@@ -4,12 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * 异常测试
- * @author : liuyiyou
- * Date: 2017/9/8
- * Time: 下午11:12
- */
 @RestController
 @RequestMapping("/error")
 public class ExceptionController {

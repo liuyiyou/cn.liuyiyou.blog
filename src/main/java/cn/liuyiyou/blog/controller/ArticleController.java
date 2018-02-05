@@ -26,9 +26,7 @@ public class ArticleController {
 
     @GetMapping("articles")
     public ModelAndView articles() {
-        //List<Article> articles = articleService.getAllArticles().getList();
         ModelAndView mv = new ModelAndView("articles");
-        // mv.addObject("articles", articles);
         return mv;
     }
 
@@ -38,9 +36,7 @@ public class ArticleController {
         return mv;
     }
 
-
     @PostMapping("list")
-//    categoryId=1&subCategoryId=&tagId=&page=3&pagesize=6
     public Result list(@RequestParam("categoryId") Integer categoryId,
                        @RequestParam("page") int page, @RequestParam("pagesize") int pageSize) throws Exception {
         Map<String, Object> params = new HashMap<>();
@@ -51,23 +47,4 @@ public class ArticleController {
                 .orElseThrow(() -> new Exception("获取文章详情失败!"));
     }
 
-//    /**
-//     * 文章详情
-//     *
-//     * @return
-//     */
-//    @RequestMapping({"/article/{id}"})
-//    public ModelAndView article(@PathVariable("id") int id) throws Exception {
-//        List<Tag> tags = tagService.selectByParamsWithPage(new Tag() {{
-//            setBlogId(blogId);
-//        }}).getList();
-//        return ofNullable(blogService.getByKey(blogId))
-//                .map(blog -> {
-//                    blog.setTags(tags);
-//                    ModelAndView mv = new ModelAndView("article");
-//                    mv.addObject("blog", blog);
-//                    return mv;
-//                })
-//                .orElseThrow(() -> new Exception("获取文章详情失败!"));
-//    }
 }

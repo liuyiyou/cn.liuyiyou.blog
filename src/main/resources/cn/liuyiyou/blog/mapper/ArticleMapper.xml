@@ -18,8 +18,12 @@
         <result property="updateTime" column="update_time"></result>
     </resultMap>
 
+    <sql id="Base_Column">
+        id,introduction,title,attachment,category_name,image,image1x,permalink,rich_recommended,sticky,create_time,update_time
+    </sql>
+
     <select id="selectArticlesByPage" parameterType="map" resultMap="BaseResultMap">
-        SELECT *
+        SELECT <include refid="Base_Column"/>
         FROM t_article
     </select>
 

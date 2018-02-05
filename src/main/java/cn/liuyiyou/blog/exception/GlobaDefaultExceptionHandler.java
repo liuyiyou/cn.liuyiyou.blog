@@ -10,21 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 全局异常处理
- * 返回json数据或者String数据：
- * 那么需要在方法上加上注解：@ResponseBody
- * 添加return即可。
- * <p>
- * 返回视图：
- * 定义一个ModelAndView即可，
- * 然后return;
- * 定义视图文件(比如：error.html,error.ftl,error.jsp);
- * <p>
- * @author : liuyiyou
- * Date: 2017/9/8
- * Time: 下午11:08
- */
 @ControllerAdvice
 public class GlobaDefaultExceptionHandler {
 
