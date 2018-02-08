@@ -18,6 +18,6 @@ public class Init implements InitializingBean {
 
     @Override
     public void afterPropertiesSet()  {
-        articleCache.loadAllArticles();
+       // articleCache.loadAllArticles();
     }
 }

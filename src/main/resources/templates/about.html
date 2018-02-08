@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:include="head::head">
+</head>
+<body>
+<header th:replace="header :: header"></header>
+<div class="_fake-header"></div>
+<div class="_main_content">
+    <form action="/careers/save/" method="post" name="ca_form" id="ca_form">
+        <input type="hidden" name="__CSRF__" id="csrf" value="">
+        <div class="ui-form ca-form">
+            <div class="ca-listbox js-listbox show-animate-item" data-value-for="#apply_job">
+                <div class="listbox">
+                    <span class="listbox-title ca-job-title">PLEASE SELECT</span>
+                    <svg class="listbox-arrow">
+                        <polyline points="1 1,10 10,19 1" class="listbox-polyline">
+                            <animate class="listbox-uarr" begin="indefinite" attributeName="points" dur="200ms" fill="freeze" to="1 10,10 1,19 10"></animate>
+                            <animate class="listbox-darr" begin="indefinite" attributeName="points" dur="200ms" fill="freeze" to="1 1,10 10,19 1"></animate>
+                        </polyline>
+                    </svg>
+                    <ul class="listbox-menu ca-category">
+                        <li class="listbox-item"><span class="listbox-text" data-value="0">Visual Designer</span></li>
+                        <li class="listbox-item"><span class="listbox-text" data-value="1">Interaction Designer</span></li>
+                        <li class="listbox-item"><span class="listbox-text" data-value="2">Multimedia Designer</span></li>
+                        <li class="listbox-item"><span class="listbox-text" data-value="3">User Experience Researcher</span></li>
+                        <li class="listbox-item"><span class="listbox-text" data-value="4">UI Engineer</span></li>
+                    </ul>
+                </div>
+                <input type="text" class="listbox-hidden" name="apply_job" id="apply_job" value="" required>
+            </div>
+            <!-- .ca-listbox -->
+
+            <div class="ui-form-group ca-resume-group show-animate-item">
+                <h3 class="ca-title">Resume</h3>
+                <p class="ca-text">Upload your resume in English (20MB max). If the resume you choose is a Weiyun file, we automatically create a copy.</p>
+                <div class="ui-form-item ca-upload-item">
+                    <button type="button" class="ca-button ca-upload js-upload" data-value-for="#resume" data-folder="careers">选择文件</button>
+                    <span class="ui-tips ui-tips-ok hide" id="resume_tips_ok">OK. <a class="js-re-upload" data-toggle="#resume_tips_ok" href="#/re-upload/">Re-Upload</a></span>
+                    <input type="hidden" class="ui-input flex-item" name="resume" id="resume" required>
+                </div>
+
+                <div class="ui-form-item">
+                    <input type="url" class="ui-input" name="website" id="website" placeholder="Website">
+                </div>
+                <span class="ui-tips ui-tips-err hide" id="resume_tips_err">Resume or Website is required.</span>
+
+            </div>
+            <!-- .ca-resume-group -->
+
+            <div class="ui-form-group ca-contact-group show-animate-item">
+
+                <h3 class="ca-title">Contact details</h3>
+
+                <p class="ca-text">Your legal name is the name that appears on your official documents. A preferred name could be a nickname or any other name you'd like us to use when addressing you in emails or in person.</p>
+
+                <div class="ui-form-item">
+                    <input type="text" class="ui-input" name="legalname" placeholder="Legal name" required>
+                </div>
+
+                <div class="ui-form-item">
+                    <input type="text" class="ui-input" name="address" placeholder="Address" required>
+                </div>
+
+                <div class="ui-form-item">
+                    <input type="email" class="ui-input" name="email" placeholder="Email address" required>
+                </div>
+
+                <div class="ui-form-item">
+                    <input type="tel" class="ui-input" name="phone" placeholder="Phone" required pattern="[0-9()-+]{5,}">
+                </div>
+
+                <div class="ui-form-item">
+                    <button type="submit" class="btn-join" data-ignore="true"><span>SUBMIT</span></button>
+                    <span class="ui-tips ui-tips-ok hide" id="form_tips_ok">Thank you for applying.</span>
+                    <span class="ui-tips ui-tips-err hide" id="form_tips_err">Resume Exist.</span>
+                </div>
+
+            </div>
+            <!-- .ca-contact-group -->
+        </div>
+    </form>
+
+</div>
+<div id="bottom-mask"></div>
+<div class="mask-strip"></div>
+<footer th:replace="footer :: footer"></footer>
+<script>
+    var G_csrf = 'kYPJ5LnUOiM42Ga3f_elMaF4WSJzgHGC';
+</script>
+<script src="/js/lib.js"></script>
+<script>
+    ;(function ($) {
+        $.getScript = function(src, func) {
+            var script = document.createElement('script');
+            script.async = "async";
+            script.src = src;
+            if (func) {
+                script.onload = func;
+            }
+            document.getElementsByTagName("head")[0].appendChild( script );
+        }
+    })(window.Zepto || window.jQuery || window.$);
+</script>
+<script src="/js/qcloud-cos.js"></script>
+<script>
+    // listbox 功能
+    var listbox = {
+        listboxs: null,
+        activeClass: 'active',
+        onClass: 'listbox-on',
+        transitionDelay: function(parentNode, reverse){
+            var items = $('.listbox-item', parentNode);
+            items.each(function(index, ele){
+                ele.style.transitionDelay =  ( !reverse ? index * 0.05 : (items.length - index - 1) * 0.05 ) + 's';
+            });
+        },
+        svgPlay: function(svg){
+            svg.beginElement && svg.beginElement();
+        },
+        events: function () {
+            var self = this;
+            $(document).click(function (e) {
+                self.listboxs.each(function (index, listbox) {
+                    var me = $(listbox);
+                    var pullDown = listbox.querySelector('.listbox-darr');
+
+                    if (me.hasClass(self.onClass)) {
+                        me.removeClass(self.onClass);
+                        me.find('.listbox-arrow').removeClass(self.activeClass);
+
+                        self.svgPlay(pullDown);
+                        self.transitionDelay(listbox, true);
+                    }
+                });
+
+            });
+        },
+        init: function (selector) {
+            var self = this;
+            self.listboxs = $(selector);
+
+            self.listboxs.each(function (index, listbox) {
+                var $listbox = $(listbox);
+
+                if ($listbox.children().length === 0) return;
+
+                var pullUp = listbox.querySelector('.listbox-uarr'),
+                    pullDown = listbox.querySelector('.listbox-darr');
+
+                $listbox.click(function (e) {
+
+                    var $current = $(this);
+
+                    var $title = $current.find('.listbox-title');
+
+                    $current.toggleClass(self.onClass);
+                    $current.find('.listbox-arrow').toggleClass('active');
+
+                    if (!$current.hasClass(self.onClass)) {  // 隐藏
+
+                        var $eo = $(e.target);
+                        if($eo.hasClass('listbox-text')){
+                            var val = $eo.data('value'),
+                                title = $eo.text();
+                            $title.text(title);
+                            $title.data('value', val);
+                            $($current.data('valueFor')).val(title);
+                        }
+                        self.svgPlay(pullDown);
+                        self.transitionDelay(listbox, true);
+                    } else {  // 展开
+
+                        $title.text('PLEASE SELECT');
+                        self.svgPlay(pullUp);
+                        self.transitionDelay(listbox);
+                    }
+                    e.stopPropagation();
+                })
+            });
+            self.events();
+        }
+    };
+    listbox.init('.js-listbox');
+
+    var careers = {
+        $form: $('#ca_form'),
+        $csrf: $('#csrf'),
+        $upload: $('.js-upload'),
+        $reUpload: $('.js-re-upload'),
+        $resume: $('#resume'),
+        $website: $('#website'),
+        $okTips: $('#resume_tips_ok'),
+        $errTips: $('#resume_tips_err'),
+        $formOkTips: $('#form_tips_ok'),
+        $formErrTips: $('#form_tips_err'),
+        toggleClass: function(toggle){
+            var group = toggle.split(',');
+            $(group).each(function(){
+                var item = this.split('>');
+                $(item[0]).toggleClass(item[1] || 'hide');
+            })
+        },
+        hideTips: function(){
+            var me = this;
+            me.$errTips.addClass('hide');
+            me.$formOkTips.addClass('hide');
+            me.$formErrTips.addClass('hide');
+        },
+        events: function(){
+            var me = this;
+
+            me.$form.submit(function(e){
+                if(me.$resume.val() == '' && me.$website.val() == ''){
+                    me.$errTips.removeClass('hide');
+                }
+                $.post( me.$form.attr('action'), me.$form.serialize(), function( json ) {
+                    if(json.data){
+                        if(json.data.type == 'add'){
+                            me.$formOkTips.removeClass('hide');
+                        }else{
+                            me.$formErrTips.removeClass('hide');
+                        }
+                    }
+                });
+                return false;
+            })
+
+            me.$reUpload.click(function(){
+                me.$upload.removeAttr('disabled');
+            })
+
+            // 隐藏
+            me.$form.on('input', function(){
+                me.hideTips();
+            })
+        },
+        initCSRF: function(val){
+            this.$csrf.val(val); // 填充 csrf 值
+        },
+        init: function(csrf){
+            this.initCSRF(csrf);
+            this.events();
+        }
+    };
+    careers.init(window.G_csrf);
+    // 全局点击切换 class 绑定
+    $('[data-toggle]').click(function(e){
+        var me = $(this), toggle = me.data('toggle');
+        careers.toggleClass(toggle);
+        e.preventDefault();
+    });
+    // 初始化腾讯云 COS 接口
+    var qc = new qcloud({
+        bucket: 'isuxdesign',
+        appid: '1251263993',
+        CSRF: G_csrf,
+        uploadSuccess: function(ret, renderFor, valueFor){
+            careers.$upload.attr('disabled', true);
+            careers.hideTips();
+            $(valueFor + '_tips_ok').removeClass('hide');
+        }
+    });
+</script>
+
+<!-- TA -->
+<script src="https://tajs.qq.com/stats?sId=24799444" charset="UTF-8"></script>
+<!-- TA -->
+
+</body>
+</html>

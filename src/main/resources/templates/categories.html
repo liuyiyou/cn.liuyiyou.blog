@@ -1,9 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<head th:include="head::head"></head>
+<head th:include="head::head">
+
+</head>
 <body>
 <header th:replace="header :: header"></header>
-<div class="_main_content"></div>
+<div class="_fake-header"></div>
+<div class="_main_content">
+    <p class="category">
+        Spring(10）,Spring(10）,Spring(10）,Spring(10）
+    </p>
+
+    <div class="ui-form-group ca-resume-group show-animate-item">
+
+        <h3 class="ca-title">Resume</h3>
+        <p class="ca-text">Upload your resume in English (20MB max). If the resume you choose is a Weiyun file, we automatically create a copy.</p>
+
+        <div class="ui-form-item ca-upload-item">
+            <button type="button" class="ca-button ca-upload js-upload" data-value-for="#resume" data-folder="careers">SELECT FILE</button>
+            <span class="ui-tips ui-tips-ok hide" id="resume_tips_ok">OK. <a class="js-re-upload" data-toggle="#resume_tips_ok" href="#/re-upload/">Re-Upload</a></span>
+            <input type="hidden" class="ui-input flex-item" name="resume" id="resume" required>
+        </div>
+
+        <div class="ui-form-item">
+            <input type="url" class="ui-input" name="website" id="website" placeholder="Website">
+        </div>
+
+        <span class="ui-tips ui-tips-err hide" id="resume_tips_err">Resume or Website is required.</span>
+
+    </div>
+
+</div>
+<div id="bottom-mask"></div>
+<div class="mask-strip"></div>
 <footer th:replace="footer :: footer"></footer>
 <script src="/js/lib.js"></script>
 </body>
