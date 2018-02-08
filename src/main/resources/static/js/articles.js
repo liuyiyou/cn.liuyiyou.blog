@@ -24,10 +24,8 @@ $(function () {
 						me.addClass(self.closeClass);
 						me.find('.pull-bar').removeClass('active');
 						pullDown.beginElement && pullDown.beginElement();
-
 						addDelay(this,true);
 					}
-
 					me.find('.dropdown-text').text(self.currentVal[index]);
 				});
 				
@@ -204,6 +202,4 @@ var parentElement = document.querySelector('.article-list');
 var emptyItem = document.querySelector('.empty-article');
 var normalItem = document.querySelector('.article-single');
 var moreBtn = document.querySelector('.js-more');
-
-
 moreBtn.addEventListener('click', more, false);

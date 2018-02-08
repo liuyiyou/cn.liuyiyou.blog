@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="webp">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Tencent ISUX Design</title>
@@ -11,49 +11,7 @@
     <link href="/css/home.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <div class="_header-wrapper">
-        <nav id="navigator" class="mod_site_nav nav-animate-item js-nav-state">
-            <div class="_nav-logo">
-                <a href="/" class="_nav-flower"></a>
-                <!-- <a href="/" class="js-nav-isux _nav-isux"></a> -->
-            </div>
-            <!-- pc端的结构 -->
-            <div class="_nav-wrapper">
-                <ul class="_nav-items">
-                    <li class="_nav-item">
-                        <a href="/articles/">ARTICLES</a>
-                    </li>
-                    <li class="_nav-item">
-                        <a href="/brands/">BRANDS</a>
-                    </li>
-                    <li class="_nav-item">
-                        <a href="/resources/">RESOURCES</a>
-                    </li>
-                    <li class="_nav-item">
-                        <a href="/careers/">CAREERS</a>
-                    </li>
-                    <!-- 移动端的搜索按钮，pc的时候为隐藏状态，功能跟._nav-search一样 -->
-                    <div class="nav-item -m-search">
-                        <a href="#/search/" data-action="toggle" data-args="body" data-cssclass="xxx"></a>
-                    </div>
-                </ul>
-            </div>
-            <!-- pc端的搜索按钮，移动端时为隐藏状态 -->
-            <div class="_nav-search">
-                <a href="#/search/" data-action="toggle" data-args="body" data-cssclass="xxx"></a>
-            </div>
-            <!-- 移动端的菜单list按钮，pc的时候为隐藏状态，在列表icon和close-icon之间切换 -->
-            <div class="_m-nav-list" data-cssclass="_m-nav-close">
-                <a href="#/list/" data-action="toggle" data-args="body" class="lines js-m-navlist">
-                    <span class="line first-line"></span>
-                    <span class="line second-line"></span>
-                    <span class="line third-line"></span>
-                </a>
-            </div>
-        </nav>
-    </div>
-</header>
+<header th:replace="header :: header"></header>
 <div class="_fake-header"></div>
 <!-- 文章列表 -->
 <section class="list" id="list">
@@ -61,7 +19,7 @@
         <section id="main" class="mod_main">
             <ul class="_article-items">
                 <li class="_article-item show-animate-item" data-home-index="1">
-                    <a href="/articles/visual-editor.html">
+                    <a href="/articles/1">
                         <img class="pic js-pic-item clip-animate-item pic-gray lazy" data-basename="148"
                              data-src="https://cdn-isux.qq.com/upload/covers/148_b_src.jpg"
                              src="https://cdn-isux.qq.com/upload/covers/148_b_src.jpg" crossOrigin='anonymous'/>

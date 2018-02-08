@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     // 点赞
     function like(id){
         return $.ajax({
@@ -205,16 +204,6 @@ $(document).ready(function(){
 
     /* initial slide-animation*/
     if(window.mobile){
-
-        //详情页测试首页广告轮播
-        /* new SlideAnimation({
-            listId: 'testlist',
-            listItem: '.test-item',
-            maxIndex: 5,
-            listLength: 6,
-            autoplay: false,
-        }); */
-
         //文章详情页推荐模块的轮播
         new SlideAnimation({
             listId: 'list',

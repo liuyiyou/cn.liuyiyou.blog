@@ -12,4 +12,10 @@ import java.util.Map;
 public interface ArticleMapper {
 
     List<Article> selectArticlesByPage(Map<String, Object> params);
+
+    List<Article> selectAll();
+
+    int insert(Article article);
+
+    Article selectById(Integer id);
 }

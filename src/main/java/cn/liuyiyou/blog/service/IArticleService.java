@@ -16,4 +16,6 @@ public interface IArticleService {
     PageInfo<Article> getAllArticles(Map<String,Object> params);
 
 
+
+    Article getArticleById(Integer id);
 }

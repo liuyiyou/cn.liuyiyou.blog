@@ -9,7 +9,7 @@
 //import org.junit.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
 //
-//public class UserServiceTest extends AbstractTest {
+//public class ArticleRedisTest extends AbstractTest {
 //
 //    @Autowired
 //    private UserMapper userMapper;
